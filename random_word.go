@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"math/rand"
 	"os"
@@ -33,8 +32,4 @@ func randomWord() string {
 	randSource := rand.New(rand.NewSource(time.Now().UnixNano()))
 	return wordsTable[randSource.Intn(len(wordsTable))]
 	// return word of wordsTable at random indice
-}
-
-func main() {
-	fmt.Println(randomWord())
 }
