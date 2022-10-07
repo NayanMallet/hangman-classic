@@ -43,6 +43,10 @@ func Game() {
 	attempts := 10
 	fmt.Printf("Good Luck, you have 10 attempts.\n%s\n", string(wordRune))
 	for attempts > 0 {
+		if string(wordRune) == word {
+			fmt.Printf("%s\n", "Congrats !")
+			return
+		}
 		var letter string
 
 		_, err := fmt.Scan(&letter)
@@ -68,5 +72,5 @@ func Game() {
 			}
 		}
 	}
-
+	fmt.Printf("%s\n", "You Loose !")
 }
