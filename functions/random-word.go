@@ -1,4 +1,4 @@
-package main
+package functions
 
 import (
 	"bufio"
@@ -8,9 +8,10 @@ import (
 	"time"
 )
 
-func randomWord() string {
+func RandomWord(pathFile string) string {
 	// Program will randomly choose a word in the file
-	file, err := os.Open("words.txt")
+	pathFile = "words-files/" + pathFile
+	file, err := os.Open(pathFile)
 
 	if err != nil {
 		log.Fatal(err)

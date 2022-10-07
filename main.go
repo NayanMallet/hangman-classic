@@ -1,5 +1,9 @@
 package main
 
+import (
+	"hangman-classic/functions"
+)
+
 func main() {
-	randomWord()
+	functions.Game()
 }
