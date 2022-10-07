@@ -42,7 +42,6 @@ func Game() {
 
 	attempts := 10
 	fmt.Printf("Good Luck, you have 10 attempts.\n%s\n", string(wordRune))
-
 	for attempts > 0 {
 		var letter string
 
@@ -57,11 +56,15 @@ func Game() {
 			continue
 		} else {
 			if Contains(word, letter) {
-				fmt.Printf("Choose: %s\n", letter)
+				indexes := LetterInWorld(word, letter)
+				for _, i := range indexes {
+					wordRune[i] = rune(word[i])
+				}
+				fmt.Printf("Choose: %s\n%s\n", letter, string(wordRune))
 			} else {
 				attempts--
 				fmt.Printf("Choose: %s\nNot present in the word, %v attempts remaining\n", letter, attempts)
-
+				PrintMan(attempts)
 			}
 		}
 	}
