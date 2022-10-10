@@ -1,0 +1,1 @@
+{"Word":"MATERNELLE","WordRune":[77,65,84,95,82,78,95,95,95,95],"Attempts":9}

@@ -9,7 +9,7 @@ import (
 )
 
 func RandomWord(pathFile string) string {
-	// Program will randomly choose a word in the file
+	// Program will randomly choose a Word in the file
 	pathFile = "words-files/" + pathFile
 	file, err := os.Open(pathFile)
 
@@ -32,5 +32,5 @@ func RandomWord(pathFile string) string {
 
 	randSource := rand.New(rand.NewSource(time.Now().UnixNano()))
 	return wordsTable[randSource.Intn(len(wordsTable))]
-	// return word of wordsTable at random indice
+	// return Word of wordsTable at random indice
 }
