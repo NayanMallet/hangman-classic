@@ -9,6 +9,9 @@ import (
 )
 
 func Game() {
+	if os.Args[1] == "--startWith" && os.Args[2] == "save.txt" {
+
+	}
 	word := strings.ToUpper(RandomWord(os.Args[1]))
 	randSource := rand.New(rand.NewSource(time.Now().UnixNano()))
 
@@ -56,8 +59,14 @@ func Game() {
 
 		letter = strings.ToUpper(letter)
 		if len(letter) > 1 {
-			fmt.Println("You can only guess one letter at a time")
-			continue
+			if letter == word {
+				fmt.Printf("%s\n", "Congrats !")
+				return
+			} else {
+				attempts--
+				fmt.Printf("Wrong ! You have %d attempts left.\n%s\n", attempts, string(wordRune))
+				PrintMan(attempts)
+			}
 		} else {
 			if Contains(word, letter) {
 				indexes := LetterInWorld(word, letter)
