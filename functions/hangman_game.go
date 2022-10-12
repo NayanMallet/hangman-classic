@@ -45,6 +45,7 @@ func Game() {
 		}
 
 		attempts := 10
+		var lettersSuggested []string
 
 		fmt.Printf("Good Luck, you have 10 attempts.\n%s\n", string(wordRune))
 		for attempts > 0 {
@@ -62,7 +63,7 @@ func Game() {
 			letter = strings.ToUpper(letter)
 			if len(letter) > 1 {
 				if letter == "STOP" {
-					SaveGame(&NewSave{Word: word, WordRune: wordRune, Attempts: attempts})
+					SaveGame(&NewSave{Word: word, WordRune: wordRune, Attempts: attempts, LettersSuggested: lettersSuggested})
 					fmt.Printf("Choose: %s\n\nGame Saved in save.txt.\n", letter)
 					return
 				}
@@ -70,25 +71,30 @@ func Game() {
 					fmt.Printf("%s\n", "Congrats !")
 					return
 				} else {
-					attempts--
+					attempts -= 2
 					fmt.Printf("Wrong ! You have %d attempts left.\n%s\n", attempts, string(wordRune))
 					PrintMan(attempts)
 				}
 			} else {
-				if Contains(word, letter) {
-					indexes := LetterInWorld(word, letter)
-					for _, i := range indexes {
-						wordRune[i] = rune(word[i])
-					}
-					fmt.Printf("Choose: %s\n%s\n", letter, string(wordRune))
+				if ContainsTable(lettersSuggested, letter) {
+					fmt.Printf("You already suggested this letter !\n%s\n", string(wordRune))
 				} else {
-					attempts--
-					fmt.Printf("Choose: %s\nNot present in the Word, %v attempts remaining\n", letter, attempts)
-					PrintMan(attempts)
+					if ContainsString(word, letter) {
+						lettersSuggested = append(lettersSuggested, letter)
+						indexes := LetterInWorld(word, letter)
+						for _, i := range indexes {
+							wordRune[i] = rune(word[i])
+						}
+						fmt.Printf("Choose: %s\n%s\n", letter, string(wordRune))
+					} else {
+						attempts--
+						fmt.Printf("Choose: %s\nNot present in the Word, %v attempts remaining\n", letter, attempts)
+						PrintMan(attempts)
+					}
 				}
 			}
 		}
-		fmt.Printf("%s\n", "You Loose !")
+		fmt.Printf("You Loose !\nThe word to find was %s", word)
 	} else {
 		data, err := ioutil.ReadFile("save.txt")
 		if err != nil {
@@ -98,7 +104,7 @@ func Game() {
 		if err2 := json.Unmarshal(data, &GameStats); err != nil {
 			fmt.Println(err2)
 		}
-		word, wordRune, attempts := GameStats.Word, GameStats.WordRune, GameStats.Attempts
+		word, wordRune, attempts, lettersSuggested := GameStats.Word, GameStats.WordRune, GameStats.Attempts, GameStats.LettersSuggested
 
 		fmt.Printf("Welcome Back, you have %v attempts remaining.\n%s\n", attempts, string(wordRune))
 		for attempts > 0 {
@@ -116,7 +122,7 @@ func Game() {
 			letter = strings.ToUpper(letter)
 			if len(letter) > 1 {
 				if letter == "STOP" {
-					SaveGame(&NewSave{Word: word, WordRune: wordRune, Attempts: attempts})
+					SaveGame(&NewSave{Word: word, WordRune: wordRune, Attempts: attempts, LettersSuggested: lettersSuggested})
 					fmt.Printf("Choose: %s\n\nGame Saved in save.txt.\n", letter)
 					return
 				}
@@ -129,19 +135,24 @@ func Game() {
 					PrintMan(attempts)
 				}
 			} else {
-				if Contains(word, letter) {
-					indexes := LetterInWorld(word, letter)
-					for _, i := range indexes {
-						wordRune[i] = rune(word[i])
-					}
-					fmt.Printf("Choose: %s\n%s\n", letter, string(wordRune))
+				if ContainsTable(lettersSuggested, letter) {
+					fmt.Printf("You already suggested this letter !\n%s\n", string(wordRune))
 				} else {
-					attempts--
-					fmt.Printf("Choose: %s\nNot present in the Word, %v attempts remaining\n", letter, attempts)
-					PrintMan(attempts)
+					if ContainsString(word, letter) {
+						lettersSuggested = append(lettersSuggested, letter)
+						indexes := LetterInWorld(word, letter)
+						for _, i := range indexes {
+							wordRune[i] = rune(word[i])
+						}
+						fmt.Printf("Choose: %s\n%s\n", letter, string(wordRune))
+					} else {
+						attempts--
+						fmt.Printf("Choose: %s\nNot present in the Word, %v attempts remaining\n", letter, attempts)
+						PrintMan(attempts)
+					}
 				}
 			}
 		}
-		fmt.Printf("%s\n", "You Loose !")
+		fmt.Printf("You Loose !\nThe word to find was %s", word)
 	}
 }

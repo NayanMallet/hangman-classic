@@ -7,9 +7,10 @@ import (
 )
 
 type NewSave struct {
-	Word     string
-	WordRune []rune
-	Attempts int
+	Word             string
+	WordRune         []rune
+	Attempts         int
+	LettersSuggested []string
 }
 
 func SaveGame(save *NewSave) {
