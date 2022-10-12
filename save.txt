@@ -1,1 +1,1 @@
-{"Word":"MEUBLE","WordRune":[77,69,85,95,95,95],"Attempts":6,"LettersSuggested":["U"]}
+{"Word":"FEMME","WordRune":[95,95,95,77,95],"Attempts":9,"LettersSuggested":null,"LetterFile":""}

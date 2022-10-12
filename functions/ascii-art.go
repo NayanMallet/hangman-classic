@@ -8,7 +8,6 @@ import (
 
 func AsciiArt(s string, file string) {
 	table := []rune(s)
-	fmt.Println(table)
 	if file, err := os.Open(file); err != nil {
 		fmt.Printf("Error: %s", err)
 		return
@@ -26,14 +25,13 @@ func AsciiArt(s string, file string) {
 				place = append(place, (int(car)-32)*9)
 			}
 		}
-		fmt.Println(place)
-		for i := 0; i < 9; i++ {
+		for i := 0; i < 10; i++ {
 			lineToPrint := ""
 			for j, places := range place {
 				lineToPrint += lines[places]
 				place[j] += 1
 			}
-			fmt.Println(lineToPrint)
+			fmt.Printf("%s\n", lineToPrint)
 		}
 
 	}

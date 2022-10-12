@@ -11,6 +11,7 @@ type NewSave struct {
 	WordRune         []rune
 	Attempts         int
 	LettersSuggested []string
+	LetterFile       string
 }
 
 func SaveGame(save *NewSave) {
