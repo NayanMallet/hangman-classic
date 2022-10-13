@@ -1,4 +1,4 @@
-package functions
+package g_func
 
 import (
 	"encoding/json"

@@ -1,4 +1,4 @@
-package functions
+package g_func
 
 func LetterInWorld(word string, letter string) []int {
 	// return the indexes of the letter in the Word

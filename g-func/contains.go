@@ -1,4 +1,4 @@
-package functions
+package g_func
 
 func ContainsString(s string, car string) bool {
 	// function to check if a character is present in a string
