@@ -1,8 +1,9 @@
-package g_func
+package game
 
 import (
 	"encoding/json"
 	"fmt"
+	"hangman-classic/g-func"
 	"hangman-classic/presentations"
 	"io/ioutil"
 	"math/rand"
@@ -11,11 +12,11 @@ import (
 	"time"
 )
 
-func Game() {
-	args := os.Args[1:]
+func Game(arg string) {
+	args := strings.Split(arg, " ")
 	if len(args) == 1 {
 		// normal game case
-		word := strings.ToUpper(RandomWord(os.Args[1]))
+		word := strings.ToUpper(g_func.RandomWord(os.Args[1]))
 		randSource := rand.New(rand.NewSource(time.Now().UnixNano()))
 		var hiddenLetters []int   // stocking the indices of the hidden letters
 		var revealedLetters []int // stocking the indices of the revealed letters
@@ -56,7 +57,7 @@ func Game() {
 			letter = strings.ToUpper(letter)
 			if len(letter) > 1 {
 				if letter == "STOP" {
-					SaveGame(&NewSave{Word: word, WordRune: wordRune, Attempts: attempts, LettersSuggested: lettersSuggested, LetterFile: ""})
+					g_func.SaveGame(&g_func.NewSave{Word: word, WordRune: wordRune, Attempts: attempts, LettersSuggested: lettersSuggested, LetterFile: ""})
 					fmt.Printf("Choose: %s\n\nGame Saved in save.txt.\n", letter)
 					return
 				}
@@ -69,12 +70,12 @@ func Game() {
 					presentations.PrintMan(attempts)
 				}
 			} else {
-				if ContainsTable(lettersSuggested, letter) {
+				if g_func.ContainsTable(lettersSuggested, letter) {
 					fmt.Printf("You already suggested this letter !\n%s\n", string(wordRune))
 				} else {
-					if ContainsString(word, letter) {
+					if g_func.ContainsString(word, letter) {
 						lettersSuggested = append(lettersSuggested, letter)
-						indexes := LetterInWorld(word, letter)
+						indexes := g_func.LetterInWorld(word, letter)
 						for _, i := range indexes {
 							wordRune[i] = rune(word[i])
 						}
@@ -94,7 +95,7 @@ func Game() {
 		if err != nil {
 			fmt.Println(err)
 		}
-		var GameStats *NewSave
+		var GameStats *g_func.NewSave
 		if err2 := json.Unmarshal(data, &GameStats); err != nil {
 			fmt.Println(err2)
 		}
@@ -114,7 +115,7 @@ func Game() {
 				letter = strings.ToUpper(letter)
 				if len(letter) > 1 {
 					if letter == "STOP" {
-						SaveGame(&NewSave{Word: word, WordRune: wordRune, Attempts: attempts, LettersSuggested: lettersSuggested, LetterFile: LetterFile})
+						g_func.SaveGame(&g_func.NewSave{Word: word, WordRune: wordRune, Attempts: attempts, LettersSuggested: lettersSuggested, LetterFile: LetterFile})
 						fmt.Printf("Choose: %s\n\nGame Saved in save.txt.\n", letter)
 						return
 					}
@@ -127,12 +128,12 @@ func Game() {
 						presentations.PrintMan(attempts)
 					}
 				} else {
-					if ContainsTable(lettersSuggested, letter) {
+					if g_func.ContainsTable(lettersSuggested, letter) {
 						fmt.Printf("You already suggested this letter !\n%s\n", string(wordRune))
 					} else {
-						if ContainsString(word, letter) {
+						if g_func.ContainsString(word, letter) {
 							lettersSuggested = append(lettersSuggested, letter)
-							indexes := LetterInWorld(word, letter)
+							indexes := g_func.LetterInWorld(word, letter)
 							for _, i := range indexes {
 								wordRune[i] = rune(word[i])
 							}
@@ -163,7 +164,7 @@ func Game() {
 				letter = strings.ToUpper(letter)
 				if len(letter) > 1 {
 					if letter == "STOP" {
-						SaveGame(&NewSave{Word: word, WordRune: wordRune, Attempts: attempts, LettersSuggested: lettersSuggested, LetterFile: LetterFile})
+						g_func.SaveGame(&g_func.NewSave{Word: word, WordRune: wordRune, Attempts: attempts, LettersSuggested: lettersSuggested, LetterFile: LetterFile})
 						fmt.Printf("Choose: %s\n\nGame Saved in save.txt.\n", letter)
 						return
 					}
@@ -177,13 +178,13 @@ func Game() {
 						presentations.PrintMan(attempts)
 					}
 				} else {
-					if ContainsTable(lettersSuggested, letter) {
+					if g_func.ContainsTable(lettersSuggested, letter) {
 						fmt.Printf("You already suggested this letter !\n")
 						presentations.AsciiArt(string(wordRune), LetterFile)
 					} else {
-						if ContainsString(word, letter) {
+						if g_func.ContainsString(word, letter) {
 							lettersSuggested = append(lettersSuggested, letter)
-							indexes := LetterInWorld(word, letter)
+							indexes := g_func.LetterInWorld(word, letter)
 							for _, i := range indexes {
 								wordRune[i] = rune(word[i])
 							}
@@ -201,7 +202,7 @@ func Game() {
 			presentations.AsciiArt(word, LetterFile)
 		}
 	} else if len(args) == 3 && args[1] == "--letterFile" {
-		word := strings.ToUpper(RandomWord(os.Args[1]))
+		word := strings.ToUpper(g_func.RandomWord(os.Args[1]))
 		randSource := rand.New(rand.NewSource(time.Now().UnixNano()))
 		var hiddenLetters []int   // stocking the indices of the hidden letters
 		var revealedLetters []int // stocking the indices of the revealed letters
@@ -243,7 +244,7 @@ func Game() {
 			letter = strings.ToUpper(letter)
 			if len(letter) > 1 {
 				if letter == "STOP" {
-					SaveGame(&NewSave{Word: word, WordRune: wordRune, Attempts: attempts, LettersSuggested: lettersSuggested, LetterFile: args[2]})
+					g_func.SaveGame(&g_func.NewSave{Word: word, WordRune: wordRune, Attempts: attempts, LettersSuggested: lettersSuggested, LetterFile: args[2]})
 					fmt.Printf("Choose: %s\n\nGame Saved in save.txt.\n", letter)
 					return
 				}
@@ -257,13 +258,13 @@ func Game() {
 					presentations.PrintMan(attempts)
 				}
 			} else {
-				if ContainsTable(lettersSuggested, letter) {
+				if g_func.ContainsTable(lettersSuggested, letter) {
 					fmt.Printf("You already suggested this letter !\n")
 					presentations.AsciiArt(string(wordRune), os.Args[3])
 				} else {
-					if ContainsString(word, letter) {
+					if g_func.ContainsString(word, letter) {
 						lettersSuggested = append(lettersSuggested, letter)
-						indexes := LetterInWorld(word, letter)
+						indexes := g_func.LetterInWorld(word, letter)
 						for _, i := range indexes {
 							wordRune[i] = rune(word[i])
 						}

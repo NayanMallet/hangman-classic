@@ -1,24 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"os/exec"
+	"hangman-classic/overlay"
 )
 
-func ziz() {
-	fmt.Println("zizi")
-}
-
 func main() {
-	//overlay.Wrapper(overlay.PrintTop, presentations.GamesRules(), overlay.PrintBottom)()
-	cmd := exec.Command("go", "run", "hangman-classic/game", "words.txt")
-	stdout, err := cmd.Output()
-
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Print the output
-	fmt.Println(string(stdout))
+	overlay.PrintTop()
+	overlay.PrintBottom()
+	//overlay.Wrapper(overlay.PrintTop, game.Progress(), overlay.PrintBottom)()
 }
