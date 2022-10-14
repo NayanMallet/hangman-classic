@@ -1,6 +1,8 @@
 package game
 
-import "hangman-classic/presentations"
+import (
+	"hangman-classic/presentations"
+)
 
 func Progress() func() {
 	// This function will be used to print the progress of the game.
