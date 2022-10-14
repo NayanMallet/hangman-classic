@@ -1,11 +1,14 @@
 package main
 
 import (
-	"hangman-classic/overlay"
+	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/widget"
 )
 
 func main() {
-	overlay.PrintTop()
-	overlay.PrintBottom()
-	//overlay.Wrapper(overlay.PrintTop, game.Progress(), overlay.PrintBottom)()
+	a := app.New()
+	w := a.NewWindow("Hello World")
+
+	w.SetContent(widget.NewLabel("Dalyll c'est un zizi"))
+	w.ShowAndRun()
 }
