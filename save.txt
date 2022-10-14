@@ -1,1 +1,0 @@
-{"Word":"RECREATION","WordRune":[82,69,67,82,69,65,84,73,79,95],"Attempts":9,"LettersSuggested":["A","O","I","E","R","C"],"LetterFile":"standard.txt"}
