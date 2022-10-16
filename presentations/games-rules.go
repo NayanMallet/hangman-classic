@@ -17,3 +17,21 @@ func GamesRules() {
 		Sleep(1)
 	}
 }
+
+func GameTypeChoice() {
+	// print the possibles choices of the hangman game
+	fmt.Printf("%s\n", Center("If you want to load last save, type 'LOAD'.", "\u0020"))
+	fmt.Printf("%s\n", Center("If you want to start a new game, type 'NEW'.", "\u0020"))
+}
+
+func GameOptionChoice() {
+	// print the possibles choices of the hangman game
+	fmt.Printf("%s\n", Center("For load custom words file enter the file name :\n", "\u0020"))
+	fmt.Printf("%s\n", Center("Else tap 'N' :)\n", "\u0020"))
+}
+
+func GameAsciiOptionChoice() {
+	// print the possibles Ascii Options of the hangman game
+	fmt.Printf("%s\n", Center("For load custom ascii art file enter the file name :\n", "\u0020"))
+	fmt.Printf("%s\n", Center("Else tap 'N' :)\n", "\u0020"))
+}

@@ -7,7 +7,6 @@ import (
 	"hangman-classic/presentations"
 	"io/ioutil"
 	"math/rand"
-	"os"
 	"strings"
 	"time"
 )
@@ -16,7 +15,7 @@ func Game(arg string) {
 	args := strings.Split(arg, " ")
 	if len(args) == 1 {
 		// normal game case
-		word := strings.ToUpper(g_func.RandomWord(os.Args[1]))
+		word := strings.ToUpper(g_func.RandomWord(args[0]))
 		randSource := rand.New(rand.NewSource(time.Now().UnixNano()))
 		var hiddenLetters []int   // stocking the indices of the hidden letters
 		var revealedLetters []int // stocking the indices of the revealed letters
@@ -202,7 +201,7 @@ func Game(arg string) {
 			presentations.AsciiArt(word, LetterFile)
 		}
 	} else if len(args) == 3 && args[1] == "--letterFile" {
-		word := strings.ToUpper(g_func.RandomWord(os.Args[1]))
+		word := strings.ToUpper(g_func.RandomWord(args[0]))
 		randSource := rand.New(rand.NewSource(time.Now().UnixNano()))
 		var hiddenLetters []int   // stocking the indices of the hidden letters
 		var revealedLetters []int // stocking the indices of the revealed letters
@@ -254,13 +253,13 @@ func Game(arg string) {
 				} else {
 					attempts -= 2
 					fmt.Printf("Wrong ! You have %d attempts left.\n", attempts)
-					presentations.AsciiArt(string(wordRune), os.Args[3])
+					presentations.AsciiArt(string(wordRune), args[2])
 					presentations.PrintMan(attempts)
 				}
 			} else {
 				if g_func.ContainsTable(lettersSuggested, letter) {
 					fmt.Printf("You already suggested this letter !\n")
-					presentations.AsciiArt(string(wordRune), os.Args[3])
+					presentations.AsciiArt(string(wordRune), args[2])
 				} else {
 					if g_func.ContainsString(word, letter) {
 						lettersSuggested = append(lettersSuggested, letter)
@@ -269,7 +268,7 @@ func Game(arg string) {
 							wordRune[i] = rune(word[i])
 						}
 						fmt.Printf("Choose: %s\n", letter)
-						presentations.AsciiArt(string(wordRune), os.Args[3])
+						presentations.AsciiArt(string(wordRune), args[2])
 					} else {
 						attempts--
 						fmt.Printf("Choose: %s\nNot present in the Word, %v attempts remaining\n", letter, attempts)
@@ -279,7 +278,7 @@ func Game(arg string) {
 			}
 		}
 		fmt.Printf("You Loose !\nThe word to find was\n")
-		presentations.AsciiArt(word, os.Args[3])
+		presentations.AsciiArt(word, args[2])
 	} else {
 		fmt.Println("Impossible...")
 	}
