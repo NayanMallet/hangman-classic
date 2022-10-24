@@ -153,7 +153,7 @@ func Game() {
 			presentations.AsciiArt(string(wordRune), LetterFile)
 			for attempts > 0 {
 				if string(wordRune) == word {
-					fmt.Printf("%s\n", "Congrats !")
+					presentations.AsciiArt("Congrats !", LetterFile)
 					return
 				}
 				var letter string
@@ -169,7 +169,7 @@ func Game() {
 						return
 					}
 					if letter == word {
-						fmt.Printf("%s\n", "Congrats !")
+						presentations.AsciiArt("Congrats !", LetterFile)
 						return
 					} else {
 						attempts--
@@ -202,6 +202,7 @@ func Game() {
 			presentations.AsciiArt(word, LetterFile)
 		}
 	} else if len(args) == 3 && args[1] == "--letterFile" {
+		// letter file case
 		word := strings.ToUpper(g_func.RandomWord(os.Args[1]))
 		randSource := rand.New(rand.NewSource(time.Now().UnixNano()))
 		var hiddenLetters []int   // stocking the indices of the hidden letters
@@ -230,10 +231,10 @@ func Game() {
 		attempts := 10
 		var lettersSuggested []string
 		fmt.Printf("Good Luck, you have 10 attempts.\n")
-		presentations.AsciiArt(string(wordRune), args[2])
+		presentations.AsciiArt(string(wordRune), os.Args[3])
 		for attempts > 0 {
 			if string(wordRune) == word {
-				fmt.Printf("%s\n", "Congrats !")
+				presentations.AsciiArt("Congrats !", os.Args[3])
 				return
 			}
 			var letter string
@@ -249,7 +250,7 @@ func Game() {
 					return
 				}
 				if letter == word {
-					fmt.Printf("%s\n", "Congrats !")
+					presentations.AsciiArt("Congrats !", os.Args[3])
 					return
 				} else {
 					attempts -= 2

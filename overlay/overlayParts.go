@@ -15,12 +15,6 @@ func PrintTop() {
 		"                       /____/                            "}
 
 	for i := 0; i < len(topLogo); i++ {
-		for j := 0; j <= 50; j++ {
-			topLogo[i] = " " + topLogo[i] + " "
-		}
-	}
-
-	for i := 0; i < len(topLogo); i++ {
 		fmt.Printf("%s\n", presentations.Center(topLogo[i], "\u0020")) // "\u0020" = space unicode
 	}
 }

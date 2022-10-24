@@ -19,19 +19,26 @@ func GamesRules() {
 }
 
 func GameTypeChoice() {
-	// print the possibles choices of the hangman game
-	fmt.Printf("%s\n", Center("If you want to load last save, type 'LOAD'.", "\u0020"))
-	fmt.Printf("%s\n", Center("If you want to start a new game, type 'NEW'.", "\u0020"))
+	fmt.Printf(
+		"%s\n%s\n",
+		Center("If you want to start a new game, type 'NEW'.", "\u0020"),
+		// type 'NEW' to start a new game
+		Center("If you want to load last save, type 'LOAD'.", "\u0020"))
+	// type 'LOAD' to Load last game
 }
 
 func GameOptionChoice() {
-	// print the possibles choices of the hangman game
-	fmt.Printf("%s\n", Center("For load custom words file enter the file name :\n", "\u0020"))
-	fmt.Printf("%s\n", Center("Else tap 'N' :)\n", "\u0020"))
+	fmt.Printf(
+		"%s\n%s\n",
+		Center("For load custom Words list enter file name (ex: yourFile.txt)\n", "\u0020"),
+		// type 'yourFile.txt' to load a custom word list
+		Center("Else tap 'N'\n", "\u0020"))
 }
 
 func GameAsciiOptionChoice() {
-	// print the possibles Ascii Options of the hangman game
-	fmt.Printf("%s\n", Center("For load custom ascii art file enter the file name :\n", "\u0020"))
-	fmt.Printf("%s\n", Center("Else tap 'N' :)\n", "\u0020"))
+	fmt.Printf(
+		"%s\n%s\n",
+		Center("For load custom Ascii-Art file enter file name (ex: yourFile.txt)\n", "\u0020"),
+		// type 'yourFile.txt' to load a custom Ascii-Art Newfile
+		Center("Else tap 'N'\n", "\u0020"))
 }

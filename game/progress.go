@@ -19,7 +19,7 @@ func Progress() {
 	overlay.PrintTop()
 	presentations.GameTypeChoice()
 	presentations.Sleep(1)
-	fmt.Printf("Your choice: \n")
+	fmt.Printf("Your choice: ")
 	typeChoice := strings.ToUpper(g_func.GetInput())
 	switch typeChoice {
 	case "LOAD":
@@ -33,14 +33,14 @@ func Progress() {
 		presentations.ClearTerminal()
 		overlay.PrintTop()
 		presentations.GameOptionChoice()
-		fmt.Printf("Your choice: \n")
+		fmt.Printf("Your choice: ")
 		wordListChoice := strings.ToUpper(g_func.GetInput())
 
 		presentations.ClearTerminal()
 		overlay.PrintTop()
 		presentations.Sleep(1)
 		presentations.GameAsciiOptionChoice()
-		fmt.Printf("Your choice: \n")
+		fmt.Printf("Your choice: ")
 		asciiChoice := strings.ToUpper(g_func.GetInput())
 
 		presentations.ClearTerminal()
@@ -66,5 +66,4 @@ func Progress() {
 			}
 		}
 	}
-	overlay.PrintBottom()
 }
