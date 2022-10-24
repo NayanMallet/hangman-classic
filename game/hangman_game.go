@@ -13,6 +13,8 @@ import (
 
 func Game(arg string) {
 	args := strings.Split(arg, " ")
+	// separate the arguments
+
 	if len(args) == 1 {
 		// normal game case
 		word := strings.ToUpper(g_func.RandomWord(args[0]))
