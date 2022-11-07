@@ -22,7 +22,6 @@ lavabo
 lecture
 lit
 marche
-matelas
 maternelle
 meuble
 mousse

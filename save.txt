@@ -1,0 +1,1 @@
+{"Word":"EXTERIEUR","WordRune":[69,95,84,69,82,95,69,95,82],"Attempts":9,"LettersSuggested":["E","T"],"LetterFile":"STANDARD.TXT"}
