@@ -1,10 +1,10 @@
-package hangman_classic
+package main
 
 import (
 	"encoding/json"
 	"fmt"
-	g_func "hangman-classic/g-func"
-	"hangman-classic/presentations"
+	g_func "github.com/NayanMallet/hangman-classic/g-func"
+	"github.com/NayanMallet/hangman-classic/presentations"
 	"io/ioutil"
 	"math/rand"
 	"os"
@@ -290,5 +290,3 @@ func main() {
 	// go run hangman-classic/basic-hangman params..
 	Game()
 }
-
-//
